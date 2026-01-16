@@ -1,1 +1,54 @@
+# Mixed Integer Quadratic Programming (MIQP / MIQCP)
+
+This subfolder contains a collection of **quadratic optimization problems with integer and/or continuous decision variables**, implemented and solved using **Gurobi** via its Python interface (`gurobipy`). The problems in this folder are drawn from the **QPLIB (Quadratic Programming Library)**, a standard benchmark suite used in optimization research and solver evaluation.
+
+The focus of this subfolder is on **modeling, solving, and analyzing quadratic programs that go beyond linear structure**, including:
+- quadratic objective functions,
+- quadratic constraints,
+- nonconvex formulations,
+- and the interaction between discrete (integer/binary) and continuous variables.
+
+---
+
+## 📘 Problem Classes Covered
+
+The problems in this folder span multiple important classes of quadratic optimization:
+
+### • **MIQP** — Mixed Integer Quadratic Programming  
+Quadratic objective with linear constraints and integer/binary variables.
+
+### • **MIQCP** — Mixed Integer Quadratically Constrained Programming  
+Quadratic objective and/or quadratic constraints with integer variables.
+
+### • **QCQP** — Quadratically Constrained Quadratic Programming  
+Continuous nonconvex problems with quadratic objective and constraints.
+
+These classes are significantly more challenging than linear MILPs and often require:
+- spatial branch-and-bound,
+- convexification techniques,
+- and explicit handling of nonconvexity.
+
+---
+
+## 📂 Included Benchmark Instances
+
+This folder currently includes implementations for the following QPLIB benchmark problems:
+
+| Instance | Problem Type | Key Characteristics |
+|--------|--------------|---------------------|
+| **QPLIB_0032** | MIQP | Binary + continuous variables, nonconvex quadratic objective |
+| **QPLIB_1703** | QCQP | Continuous-only, nonconvex quadratic objective and constraints |
+| **QPLIB_3562** | MIQCP | Integer and binary variables with indefinite quadratic constraints |
+
+Each instance is provided in `.lp` format and solved using appropriate Gurobi settings.
+
+---
+
+## ⚙️ Solver Configuration Highlights
+
+Depending on the problem structure, the code in this folder demonstrates:
+
+- Enabling **nonconvex quadratic optimization**:
+  ```python
+  m.Params.NonConvex = 2
 
